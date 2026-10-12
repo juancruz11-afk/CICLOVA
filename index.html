@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CICLOVA - Tu basura tiene valor</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons para iconografía moderna -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ciclova: {
+                            bg: '#0B1F14',
+                            card: '#1E3A2E',
+                            neon: '#39FF6B',
+                            light: '#A7F3D0',
+                            text: '#FFFFFF',
+                            muted: '#A0B8A8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1F14;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        /* Efecto de brillo de fondo sutil */
+        .glow-bg {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(57,255,107,0.1) 0%, rgba(11,31,20,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Estilos para el scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1F14; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E3A2E; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #39FF6B; 
+        }
+    </style>
+</head>
+<body class="font-sans antialiased relative min-h-screen flex flex-col">
+
+    <!-- Fondo decorativo -->
+    <div class="glow-bg"></div>
+
+    <!-- Navegación -->
+    <header class="w-full bg-ciclova-bg/80 backdrop-blur-md fixed top-0 z-50 border-b border-ciclova-card">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-2 cursor-pointer">
+                <i class="ph-fill ph-plant text-ciclova-neon text-3xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wider leading-none">CICLOVA</h1>
+                    <p class="text-[10px] text-ciclova-muted tracking-widest uppercase">Recicladora</p>
+                </div>
+            </div>
+
+            <!-- Enlaces de navegación (Desktop) -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#" class="text-ciclova-neon flex items-center gap-1 transition-colors">
+                    <i class="ph-fill ph-house"></i> Inicio
+                </a>
+                <a href="#" class="text-ciclova-muted hover:text-white transition-colors">Cómo funciona</a>
+                <a href="#" class="text-ciclova-muted hover:text-white transition-colors">Mis puntos</a>
+                <a href="#" class="text-ciclova-muted hover:text-white transition-colors">Recompensas</a>
+            </nav>
+
+            <!-- Botón Perfil & Menú Móvil -->
+            <div class="flex items-center gap-4">
+                <a href="login.html" class="w-10 h-10 rounded-full bg-ciclova-card flex items-center justify-center text-ciclova-muted hover:text-ciclova-neon hover:border-ciclova-neon border border-transparent transition-all">
+                    <i class="ph ph-user text-xl"></i>
+                </a>
+                <button class="md:hidden text-ciclova-muted text-2xl">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Espaciador para el header fijo -->
+    <div class="h-20"></div>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 md:px-6 py-8 md:py-16">
+        
+        <!-- Hero Section -->
+        <section class="flex flex-col md:flex-row items-center justify-between gap-12 mb-20">
+            <!-- Texto Hero -->
+            <div class="w-full md:w-1/2 flex flex-col items-start z-10">
+                <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                    Tu basura<br>
+                    también tiene<br>
+                    <span class="text-ciclova-neon">valor</span>
+                </h2>
+                <p class="text-ciclova-muted text-lg mb-8 max-w-md">
+                    Recicla aluminio y plástico, acumula puntos y canjéalos por increíbles recompensas.
+                </p>
+                <a href="login.html" class="inline-flex group bg-ciclova-neon text-ciclova-bg font-bold py-4 px-8 rounded-full hover:bg-[#2FE05A] transition-all items-center gap-2 shadow-[0_0_20px_rgba(57,255,107,0.3)] hover:shadow-[0_0_30px_rgba(57,255,107,0.5)] transform hover:-translate-y-1">
+                    Comenzar ahora 
+                    <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Ilustración Abstracta (Sustituto de imagen para mantener todo en un archivo) -->
+            <div class="w-full md:w-1/2 relative h-[400px] flex items-center justify-center">
+                <div class="absolute inset-0 bg-ciclova-card rounded-full opacity-20 blur-3xl scale-150"></div>
+                
+                <!-- Elementos flotantes -->
+                <div class="relative w-full max-w-sm aspect-square bg-gradient-to-br from-ciclova-card to-ciclova-bg border border-ciclova-card rounded-3xl p-8 flex items-center justify-center shadow-2xl overflow-hidden">
+                    <div class="absolute -top-10 -right-10 text-ciclova-muted/10">
+                        <i class="ph-fill ph-recycle text-9xl"></i>
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col items-center gap-6">
+                        <div class="flex items-end gap-4 animate-[bounce_4s_infinite]">
+                            <div class="w-20 h-32 bg-gray-400 rounded-lg rounded-t-2xl relative shadow-lg overflow-hidden border-2 border-gray-300">
+                                <div class="absolute top-2 w-full h-2 bg-gray-500 opacity-30"></div>
+                                <div class="absolute bottom-2 w-full text-center text-gray-700 font-bold text-xs">ALU</div>
+                            </div>
+                            <div class="w-16 h-36 bg-blue-400/80 backdrop-blur-sm rounded-full rounded-t-3xl relative shadow-lg border border-blue-300/50 flex flex-col items-center justify-start pt-2">
+                                <div class="w-6 h-4 bg-white/50 rounded-t-sm mb-1"></div>
+                                <div class="w-10 h-1 bg-white/30 rounded-full mt-4"></div>
+                                <div class="w-12 h-1 bg-white/30 rounded-full mt-2"></div>
+                            </div>
+                        </div>
+                        <div class="bg-ciclova-bg/80 backdrop-blur rounded-full px-6 py-2 border border-ciclova-neon/30 flex items-center gap-2 text-ciclova-neon font-bold">
+                            <i class="ph-fill ph-arrows-clockwise text-xl"></i> + Puntos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarjetas de Materiales -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+            
+            <!-- Tarjeta Aluminio -->
+            <div class="bg-ciclova-card rounded-3xl p-6 md:p-8 flex items-start gap-6 border border-white/5 hover:border-ciclova-neon/30 transition-all hover:-translate-y-1 shadow-lg group">
+                <div class="w-16 h-16 rounded-2xl bg-[#2A4D3D] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <img src="assets/img/aluminio.jpg" alt="Aluminio" class="w-full h-full object-cover rounded-2xl">
+                </div>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Aluminio</h3>
+                        <span class="text-ciclova-neon font-bold bg-ciclova-bg py-1 px-3 rounded-full text-sm">
+                            5 pts/kg
+                        </span>
+                    </div>
+                    <p class="text-ciclova-muted text-sm leading-relaxed">
+                        Latas, tapas, papel aluminio, charolas limpias, etc.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tarjeta Plástico -->
+            <div class="bg-ciclova-card rounded-3xl p-6 md:p-8 flex items-start gap-6 border border-white/5 hover:border-ciclova-neon/30 transition-all hover:-translate-y-1 shadow-lg group">
+                <div class="w-16 h-16 rounded-2xl bg-[#2A4D3D] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <img src="assets/img/plastico.jpg" alt="Plastico" class="w-full h-full object-cover rounded-2xl">
+                </div>
+                <div class="flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-2xl font-bold">Plástico</h3>
+                        <span class="text-ciclova-light font-bold bg-ciclova-bg py-1 px-3 rounded-full text-sm">
+                            3 pts/kg
+                        </span>
+                    </div>
+                    <p class="text-ciclova-muted text-sm leading-relaxed">
+                        Botellas de agua, envases de limpieza, tapas, PET, HDPE.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ¿Cómo funciona? -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold mb-8">¿Cómo funciona?</h3>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 relative">
+                <!-- Línea conectora (Desktop) -->
+                <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-[2px] bg-ciclova-card z-0"></div>
+
+                <!-- Paso 1 -->
+                <div class="flex flex-col items-center text-center relative z-10 group">
+                    <div class="w-16 h-16 rounded-full bg-ciclova-bg border-2 border-ciclova-card group-hover:border-ciclova-neon flex items-center justify-center mb-4 transition-colors">
+                        <i class="ph ph-hand-coins text-2xl text-white"></i>
+                    </div>
+                    <h4 class="font-bold mb-1">1. Entrega</h4>
+                    <p class="text-xs text-ciclova-muted">Lleva tus materiales reciclables.</p>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="flex flex-col items-center text-center relative z-10 group">
+                    <div class="w-16 h-16 rounded-full bg-ciclova-bg border-2 border-ciclova-card group-hover:border-ciclova-neon flex items-center justify-center mb-4 transition-colors">
+                        <i class="ph ph-pencil-simple text-2xl text-white"></i>
+                    </div>
+                    <h4 class="font-bold mb-1">2. Registra</h4>
+                    <p class="text-xs text-ciclova-muted">Ingresa la cantidad en la app.</p>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="flex flex-col items-center text-center relative z-10 group">
+                    <div class="w-16 h-16 rounded-full bg-ciclova-bg border-2 border-ciclova-card group-hover:border-ciclova-neon flex items-center justify-center mb-4 transition-colors">
+                        <i class="ph ph-leaf text-2xl text-ciclova-neon"></i>
+                    </div>
+                    <h4 class="font-bold mb-1">3. Acumula</h4>
+                    <p class="text-xs text-ciclova-muted">Recibe tus puntos digitales.</p>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="flex flex-col items-center text-center relative z-10 group">
+                    <div class="w-16 h-16 rounded-full bg-ciclova-bg border-2 border-ciclova-card group-hover:border-ciclova-neon flex items-center justify-center mb-4 transition-colors">
+                        <i class="ph ph-gift text-2xl text-white"></i>
+                    </div>
+                    <h4 class="font-bold mb-1">4. Canjea</h4>
+                    <p class="text-xs text-ciclova-muted">Úsalos en nuestras recompensas.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex items-center gap-2 bg-ciclova-card/50 inline-flex px-4 py-2 rounded-lg border border-ciclova-card">
+                <i class="ph-fill ph-leaf text-ciclova-neon"></i>
+                <span class="text-sm text-ciclova-muted">Pequeñas acciones, grandes cambios.</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer sencillo -->
+    <footer class="border-t border-ciclova-card mt-auto py-6 text-center text-sm text-ciclova-muted">
+        <p>© 2026 CICLOVA. Tu residuo, una nueva oportunidad.</p>
+    </footer>
+
+    <!-- Notificación tipo Toast (Reemplazo de Alert) -->
+    <div id="custom-toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 translate-y-24 opacity-0 bg-ciclova-card border border-ciclova-neon text-white px-6 py-3 rounded-full shadow-[0_0_15px_rgba(57,255,107,0.2)] flex items-center gap-3 transition-all duration-300 ease-out z-50 pointer-events-none">
+        <i class="ph-fill ph-info text-ciclova-neon text-xl"></i>
+        <span id="toast-message" class="font-medium">Mensaje aquí</span>
+    </div>
+
+    <!-- Lógica de Interacción -->
+    <script>
+        
+        // Función para mostrar la notificación en lugar de usar alert()
+        function showToast(message) {
+            const toast = document.getElementById('custom-toast');
+            const messageEl = document.getElementById('toast-message');
+            
+            // Set message
+            messageEl.textContent = message;
+            
+            // Show toast
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
