@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CICLOVA - Iniciar Sesión</title>
+    <title>CICLOVA LOGIN</title>
     
-    <!-- Fuentes de Google -->
+    <!-- Enlace a tu CSS Externo -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Fuentes y Iconos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons para iconografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (Configuración via Script para CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,7 +27,10 @@
                             neon: '#39FF6B',
                             light: '#A7F3D0',
                             text: '#FFFFFF',
-                            muted: '#A0B8A8'
+                            muted: '#A0B8A8',
+                            alert: '#FF4B4B',
+                            warning: '#FFD166',
+                            blueprint: '#38BDF8'
                         }
                     },
                     fontFamily: {
@@ -36,53 +40,6 @@
             }
         }
     </script>
-
-    <style>
-        body {
-            background-color: #0B1F14;
-            color: #FFFFFF;
-            overflow-x: hidden;
-        }
-        
-        /* Efecto de brillo de fondo decorativo */
-        .glow-bg {
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(57,255,107,0.08) 0%, rgba(11,31,20,0) 70%);
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .glow-bg-2 {
-            position: absolute;
-            bottom: -10%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(167,243,208,0.05) 0%, rgba(11,31,20,0) 70%);
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* Esconder input temporal para transición suave */
-        .input-group {
-            transition: all 0.3s ease-in-out;
-            max-height: 100px;
-            opacity: 1;
-            overflow: hidden;
-        }
-        .input-group.collapsed {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border: none;
-        }
-    </style>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col items-center justify-center relative px-4 py-8">
 
@@ -108,12 +65,12 @@
         </div>
 
         <!-- Tarjeta de Login/Registro -->
-        <div class="w-full bg-ciclova-card/60 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 shadow-2xl">
+        <div class="w-full bg-ciclova-card/60 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 shadow-2xl transition-all duration-500">
             
             <h2 id="form-title" class="text-xl font-bold text-center mb-6">Iniciar sesión</h2>
 
             <!-- Selector (Toggle) Iniciar Sesión / Crear Cuenta -->
-            <div class="flex p-1 bg-ciclova-bg rounded-xl mb-8 border border-white/5 relative">
+            <div id="toggle-container" class="flex p-1 bg-ciclova-bg rounded-xl mb-8 border border-white/5 relative">
                 <div id="toggle-bg" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-ciclova-card rounded-lg shadow-sm transition-transform duration-300 ease-in-out"></div>
                 
                 <button id="btn-tab-login" onclick="switchTab('login')" class="relative z-10 flex-1 py-2.5 rounded-lg text-sm font-semibold text-white transition-colors">
@@ -181,15 +138,40 @@
                 <div class="space-y-3">
                     <button type="button" class="w-full bg-transparent border border-white/10 rounded-xl py-3 flex items-center justify-center gap-3 hover:bg-white/5 transition-colors text-sm font-medium">
                         <i class="ph-fill ph-google-logo text-xl"></i>
-                        Continuar con Google
+                        <span class="text-white">Continuar con Google</span>
                     </button>
                     <button type="button" class="w-full bg-transparent border border-white/10 rounded-xl py-3 flex items-center justify-center gap-3 hover:bg-white/5 transition-colors text-sm font-medium">
                         <i class="ph-fill ph-apple-logo text-xl"></i>
-                        Continuar con Apple
+                        <span class="text-white">Continuar con Apple</span>
                     </button>
                 </div>
-
             </form>
+
+            <!-- NUEVO: Modal de Selección (Oculto inicialmente) -->
+            <div id="demo-selector" class="hidden text-center py-4">
+                <i class="ph-fill ph-check-circle text-ciclova-neon text-6xl mb-4 drop-shadow-[0_0_15px_rgba(57,255,107,0.5)]"></i>
+                <h3 class="text-2xl font-bold text-white mb-2">¡Acceso Exitoso!</h3>
+                <p class="text-ciclova-muted text-sm mb-8">¿Qué vista deseas mostrar en la presentación?</p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Botón para Cliente -->
+                    <a href="dashboard.html" class="flex flex-col items-center gap-3 bg-ciclova-bg border border-white/10 hover:border-ciclova-neon/50 p-4 rounded-2xl hover:-translate-y-1 transition-all group shadow-lg">
+                        <div class="w-14 h-14 bg-ciclova-card rounded-full flex items-center justify-center group-hover:bg-ciclova-neon transition-colors">
+                            <i class="ph-fill ph-user text-2xl text-ciclova-muted group-hover:text-ciclova-bg transition-colors"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white">Vista Cliente</span>
+                    </a>
+                    
+                    <!-- Botón para Admin -->
+                    <a href="admin.html" class="flex flex-col items-center gap-3 bg-ciclova-bg border border-white/10 hover:border-[#FF4B4B]/50 p-4 rounded-2xl hover:-translate-y-1 transition-all group shadow-lg">
+                        <div class="w-14 h-14 bg-ciclova-card rounded-full flex items-center justify-center group-hover:bg-[#FF4B4B] transition-colors">
+                            <i class="ph-fill ph-wrench text-2xl text-ciclova-muted group-hover:text-white transition-colors"></i>
+                        </div>
+                        <span class="text-sm font-medium text-white">Vista Admin</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -203,7 +185,7 @@
 
     <!-- Script de Interactividad -->
     <script>
-        let currentMode = 'login'; // 'login' or 'register'
+        let currentMode = 'login';
 
         function switchTab(mode) {
             if (currentMode === mode) return;
@@ -219,46 +201,30 @@
             const nameInput = document.getElementById('name-input');
 
             if (mode === 'register') {
-                // Mover fondo al tab de Crear cuenta
                 toggleBg.style.transform = 'translateX(100%)';
-                
-                // Actualizar estilos de texto de tabs
                 btnRegister.classList.remove('text-ciclova-muted');
                 btnRegister.classList.add('text-white');
                 btnLogin.classList.remove('text-white');
                 btnLogin.classList.add('text-ciclova-muted');
                 
-                // Actualizar Formulario
                 formTitle.textContent = 'Crear cuenta';
                 nameGroup.classList.remove('collapsed');
                 nameGroup.classList.add('mb-4');
                 nameInput.setAttribute('required', 'true');
-                
-                // Ocultar recordarme/olvidé contraseña
                 optionsGroup.style.display = 'none';
-                
-                // Cambiar botón
                 submitBtn.textContent = 'Registrarse';
             } else {
-                // Mover fondo al tab de Login
                 toggleBg.style.transform = 'translateX(0)';
-                
-                // Actualizar estilos de texto de tabs
                 btnLogin.classList.remove('text-ciclova-muted');
                 btnLogin.classList.add('text-white');
                 btnRegister.classList.remove('text-white');
                 btnRegister.classList.add('text-ciclova-muted');
                 
-                // Actualizar Formulario
                 formTitle.textContent = 'Iniciar sesión';
                 nameGroup.classList.add('collapsed');
                 nameGroup.classList.remove('mb-4');
                 nameInput.removeAttribute('required');
-                
-                // Mostrar recordarme/olvidé contraseña
                 optionsGroup.style.display = 'flex';
-                
-                // Cambiar botón
                 submitBtn.textContent = 'Entrar';
             }
         }
@@ -270,12 +236,10 @@
             if (pwdInput.type === 'password') {
                 pwdInput.type = 'text';
                 eyeIcon.classList.remove('ph-eye');
-                eyeIcon.classList.add('ph-eye-slash');
-                eyeIcon.classList.add('text-ciclova-neon');
+                eyeIcon.classList.add('ph-eye-slash', 'text-ciclova-neon');
             } else {
                 pwdInput.type = 'password';
-                eyeIcon.classList.remove('ph-eye-slash');
-                eyeIcon.classList.remove('text-ciclova-neon');
+                eyeIcon.classList.remove('ph-eye-slash', 'text-ciclova-neon');
                 eyeIcon.classList.add('ph-eye');
             }
         }
@@ -283,7 +247,6 @@
         function showToast(message) {
             const toast = document.getElementById('custom-toast');
             const messageEl = document.getElementById('toast-message');
-            
             messageEl.textContent = message;
             
             toast.classList.remove('-translate-y-24', 'opacity-0');
@@ -299,7 +262,7 @@
             event.preventDefault(); // Evita recargar la página
 
             const btn = document.getElementById('submit-btn');
-            const originalText = btn.textContent;
+            const originalText = btn.innerHTML;
             
             // Efecto de carga visual
             btn.innerHTML = `<i class="ph-bold ph-spinner animate-spin text-xl"></i> Procesando...`;
@@ -309,19 +272,19 @@
             setTimeout(() => {
                 if (currentMode === 'login') {
                     showToast('¡Bienvenido de vuelta a CICLOVA!');
-                    window.location.href = 'dashboard.html';
                 } else {
                     showToast('¡Cuenta creada con éxito! Bienvenido.');
                 }
                 
-                // Restaurar botón (solo por si acaso no hay redirección)
-                btn.innerHTML = originalText;
-                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                // 1. Ocultar el formulario, el título y el toggle
+                document.getElementById('auth-form').classList.add('hidden');
+                document.getElementById('toggle-container').classList.add('hidden');
+                document.getElementById('form-title').classList.add('hidden');
 
-                // Simular redirección al iniciar sesión
-                setTimeout(() => {
-                    window.location.href = 'index.html'; 
-                }, 1000);
+                // 2. Mostrar la pantalla de selección (Modal)
+                const demoSelector = document.getElementById('demo-selector');
+                demoSelector.classList.remove('hidden');
+                demoSelector.classList.add('fade-in-up'); // Añade la animación que pusimos en CSS
                 
             }, 1500);
         }

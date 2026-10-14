@@ -1,0 +1,149 @@
+/* =======================================================
+   CICLOVA - Estilos Globales (Responsive)
+   ======================================================= */
+
+/* Variables de Color (Para usar en CSS puro) */
+:root {
+    --color-bg: #0B1F14;
+    --color-card: #1E3A2E;
+    --color-neon: #39FF6B;
+    --color-alert: #FF4B4B;
+    --color-warning: #FFD166;
+    --color-blueprint: #38BDF8;
+}
+
+/* Configuraciones Base */
+body {
+    background-color: var(--color-bg);
+    color: #FFFFFF;
+    overflow-x: hidden;
+    /* Ajuste para que en iOS Safari no se esconda la barra inferior */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Scrollbar Personalizado (Visible principalmente en Escritorio) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg); 
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-card); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neon); 
+}
+
+/* =======================================================
+   EFECTOS VISUALES Y FONDOS
+   ======================================================= */
+
+/* Brillos de Fondo (Usados en Index y Login) */
+.glow-bg {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    /* Ajuste responsivo */
+    width: 300px;
+    height: 300px;
+    top: 5%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(57,255,107,0.15) 0%, rgba(11,31,20,0) 70%);
+}
+@media (min-width: 768px) {
+    .glow-bg {
+        width: 500px;
+        height: 500px;
+        top: -10%;
+        left: -10%;
+    }
+}
+
+.glow-bg-2 {
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(167,243,208,0.08) 0%, rgba(11,31,20,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+@media (min-width: 768px) {
+    .glow-bg-2 {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+/* Fondo del Plano Técnico (Grid Blueprint - Usado en Admin) */
+.grid-bg {
+    background-color: #05100A;
+    background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center center;
+    position: relative;
+}
+@media (min-width: 768px) {
+    .grid-bg { background-size: 30px 30px; }
+}
+
+/* =======================================================
+   ANIMACIONES Y UTILIDADES COMPONENTES
+   ======================================================= */
+
+/* Transición suave para Inputs (Usado en Login) */
+.input-group {
+    transition: all 0.3s ease-in-out;
+    max-height: 100px;
+    opacity: 1;
+    overflow: hidden;
+}
+.input-group.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: none;
+}
+
+/* Animación de entrada (Modal Login) */
+.fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación rápida (Puntos de error en Admin) */
+.animate-pulse-fast {
+    animation: pulse-fast 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse-fast {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Alineación de Etiquetas SVG (Admin) */
+.blueprint-label {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+.blueprint-label.right-align {
+    align-items: flex-end;
+    text-align: right;
+}
+.blueprint-label.left-align {
+    align-items: flex-start;
+    text-align: left;
+}
